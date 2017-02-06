@@ -1,0 +1,40 @@
+extends includes/template.pug
+block main
+	.table
+		.wrapper__cube
+			.row__cube
+				.frame__cube
+					label(for='ch1')
+						include includes/_cube-constructor
+				.frame__cube
+					label(for='ch2')
+						include includes/_cube-constructor
+			.row__cube
+				.frame__cube
+					label(for='ch3')
+						include includes/_cube-constructor
+			.row__cube
+				.frame__cube
+					label(for='ch4')
+						include includes/_cube-constructor
+				.frame__cube
+					label(for='ch5')
+						include includes/_cube-constructor
+		.menu
+			.radio
+				for val, key in r
+					if (val == 'r5')
+						input(type='radio' name='r' checked id=val)
+						label.radio__label(for=val)
+							img.radio__star(src='images/star.png')
+					else
+						input(type='radio' name='r' id=val)
+						label.radio__label(for=val)= key+1
+			.random
+				button.random__button R A N D O M
+			.menu__checkbox
+				for val in ch
+					input(type='checkbox' name='ch' id=val)
+block script
+	script(src="script.js?var=1.0.1")
+	script(src="remove.js?var=1.0.1")
