@@ -2,12 +2,10 @@ var inp = document.getElementsByName('r');
 var ch = document.getElementsByName('ch');
 var cube = document.getElementsByClassName('cube');
 var frame = document.getElementsByClassName('frame__cube');
-
+var row = document.getElementsByClassName('row__cube');
 		
 document.getElementsByClassName('radio')[0].onclick = function() {
 	
-	var row = document.getElementsByClassName('row__cube');
-
 	if (inp[0].type == "radio" && inp[0].checked) {
 		row[0].style.display = 'none';
 		row[1].style.display = 'flex';
@@ -39,11 +37,12 @@ document.getElementsByClassName('random__button')[0].onclick = function random()
 	
 	function random2(argument) {
 
-		var y = Math.floor(Math.random()*4) * 90;
-		var x = Math.floor(Math.random()*4) * 90;
-		var z = Math.floor(Math.random()*4) * 90;
+		function game() {
+			var x = Math.floor(Math.random()*(5 - 1) + 1) * 90;
+			return x
+		}
 
-		cube[argument].style.transform = "rotateY(" + y + "deg) rotateX(" + x + "deg) rotateZ(" + z + "deg)"
+		cube[argument].style.transform = "rotateY(" + game() + "deg) rotateX(" + game() + "deg) rotateZ(" + game() + "deg)"
 	}
 
 	for (var i = 0; i <= 4; i++) {
@@ -63,14 +62,14 @@ document.getElementsByClassName('random__button')[0].onclick = function random()
 	}
 }
 function stop(n) {
-	var size = cube[n].getElementsByClassName('size');
+	var side = cube[n].getElementsByClassName('side');
 
-	for (var i = 0; i < size.length; i++) {
+	for (var i = 0; i < side.length; i++) {
 		if (!ch[n].checked){
-			size[i].style.background = "#444"
+			side[i].style.background = "#444"
 		}
 		else {
-			size[i].style.background = "#000"
+			side[i].style.background = "#000"
 		}	
 	}
 }
