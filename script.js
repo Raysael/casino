@@ -5,31 +5,45 @@ var frame = document.getElementsByClassName('frame__cube');
 var row = document.getElementsByClassName('row__cube');
 		
 document.getElementsByClassName('radio')[0].onclick = function() {
+
+	function rowShow(index, show) {
+		for (var j = 0; j < 3; j++) {
+			if (j == index) {
+				row[j].style.display = show;
+			}
+			else {
+				if (show == 'flex') {
+					row[j].style.display = 'none';
+				}
+				else {
+					row[j].style.display = 'flex';
+				}
+			}
+		}
+	}
 	
-	if (inp[0].type == "radio" && inp[0].checked) {
-		row[0].style.display = 'none';
-		row[1].style.display = 'flex';
-		row[2].style.display = 'none';
-	}
-	else if (inp[1].type == "radio" && inp[1].checked) {
-		row[0].style.display = 'flex';
-		row[1].style.display = 'none';
-		row[2].style.display = 'none';
-	}
-	else if (inp[2].type == "radio" && inp[2].checked) {
-		row[0].style.display = 'flex';
-		row[1].style.display = 'flex';
-		row[2].style.display = 'none';
-	}
-	else if (inp[3].type == "radio" && inp[3].checked) {
-		row[0].style.display = 'flex';
-		row[1].style.display = 'none';
-		row[2].style.display = 'flex';
-	}
-	else if (inp[4].type == "radio" && inp[4].checked) {
-		row[0].style.display = 'flex';
-		row[1].style.display = 'flex';
-		row[2].style.display = 'flex';
+	for (var i = 0; i < inp.length; i++) {
+		if (inp[i].checked) {
+				switch (i) {
+				case 0:
+					rowShow(1, 'flex')
+					break;
+				case 1:
+					rowShow(0, 'flex')
+					break;
+				case 2:
+					rowShow(2, 'none')
+					break;
+				case 3:
+					rowShow(1, 'none')
+					break;
+				default:
+					for (var j = 0; j < 3; j++) {
+						row[j].style.display = 'flex';
+					}
+					break;
+			}
+		}
 	}
 }
 
